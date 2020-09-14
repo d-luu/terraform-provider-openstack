@@ -1,6 +1,6 @@
 package openstack
 
-import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 func networkingV2ReadAttributesTags(d *schema.ResourceData, tags []string) {
 	expandObjectReadTags(d, tags)

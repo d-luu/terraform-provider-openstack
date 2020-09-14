@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gophercloud/gophercloud/openstack/orchestration/v1/stacks"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceOrchestrationStackV1() *schema.Resource {

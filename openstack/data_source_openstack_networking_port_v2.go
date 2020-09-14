@@ -5,9 +5,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/structure"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/dns"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
@@ -76,7 +75,7 @@ func dataSourceNetworkingPortV2() *schema.Resource {
 			"fixed_ip": {
 				Type:         schema.TypeString,
 				Optional:     true,
-				ValidateFunc: validation.SingleIP(),
+				ValidateFunc: validation.IsIPAddress,
 			},
 
 			"status": {
@@ -168,10 +167,6 @@ func dataSourceNetworkingPortV2() *schema.Resource {
 						"profile": {
 							Type:     schema.TypeString,
 							Computed: true,
-							StateFunc: func(v interface{}) string {
-								json, _ := structure.NormalizeJsonString(v)
-								return json
-							},
 						},
 						"vif_details": {
 							Type:     schema.TypeMap,

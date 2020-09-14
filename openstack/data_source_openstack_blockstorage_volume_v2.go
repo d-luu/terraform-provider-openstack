@@ -6,7 +6,7 @@ import (
 
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/v2/volumes"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func dataSourceBlockStorageVolumeV2() *schema.Resource {

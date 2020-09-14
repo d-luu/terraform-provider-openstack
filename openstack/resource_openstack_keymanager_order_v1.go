@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/gophercloud/gophercloud/openstack/keymanager/v1/orders"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceKeyManagerOrderV1() *schema.Resource {
@@ -49,7 +49,7 @@ func resourceKeyManagerOrderV1() *schema.Resource {
 							Type:         schema.TypeString,
 							Optional:     true,
 							ForceNew:     true,
-							ValidateFunc: validation.ValidateRFC3339TimeString,
+							ValidateFunc: validation.IsRFC3339Time,
 						},
 						"mode": {
 							Type:     schema.TypeString,

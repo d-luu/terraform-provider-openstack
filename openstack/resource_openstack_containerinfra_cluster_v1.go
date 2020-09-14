@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/gophercloud/gophercloud/openstack/containerinfra/v1/clusters"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func resourceContainerInfraClusterV1() *schema.Resource {
@@ -203,7 +203,7 @@ func resourceContainerInfraClusterV1() *schema.Resource {
 			},
 
 			"kubeconfig": {
-				Type:      schema.TypeMap,
+				Type:      schema.TypeSet,
 				Computed:  true,
 				Sensitive: true,
 				Elem: &schema.Resource{

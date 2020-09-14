@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas/pools"
@@ -68,10 +68,10 @@ func resourceLBPoolV1() *schema.Resource {
 				Computed: true,
 			},
 			"member": {
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Removed:  "Use openstack_lb_member_v1 instead.",
+				Type:       schema.TypeSet,
+				Elem:       &schema.Schema{Type: schema.TypeString},
+				Optional:   true,
+				Deprecated: "Use openstack_lb_member_v1 instead.",
 			},
 			"monitor_ids": {
 				Type:     schema.TypeSet,

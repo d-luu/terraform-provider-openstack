@@ -1,14 +1,15 @@
 package openstack
 
 import (
+	"context"
 	"fmt"
 	"log"
 
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/subnets"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 // networkingSubnetV2StateRefreshFunc returns a standard resource.StateRefreshFunc to wait for subnet status.
@@ -122,7 +123,7 @@ func expandNetworkingSubnetV2HostRoutes(rawHostRoutes []interface{}) []subnets.H
 	return result
 }
 
-func networkingSubnetV2AllocationPoolsCustomizeDiff(diff *schema.ResourceDiff) error {
+func networkingSubnetV2AllocationPoolsCustomizeDiff(ctx context.Context, diff *schema.ResourceDiff) error {
 	if diff.Id() != "" && diff.HasChange("allocation_pools") {
 		o, n := diff.GetChange("allocation_pools")
 		oldPools := o.([]interface{})

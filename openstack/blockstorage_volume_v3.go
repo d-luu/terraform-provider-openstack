@@ -7,8 +7,9 @@ import (
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/v3/volumes"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/hashcode"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+
+	"github.com/terraform-providers/terraform-provider-openstack/internal/helper/hashcode"
 )
 
 func flattenBlockStorageVolumeV3Attachments(v []volumes.Attachment) []map[string]interface{} {

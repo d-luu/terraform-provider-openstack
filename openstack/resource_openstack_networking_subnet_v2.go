@@ -1,14 +1,15 @@
 package openstack
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"time"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/customdiff"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/customdiff"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/attributestags"
@@ -221,8 +222,8 @@ func resourceNetworkingSubnetV2() *schema.Resource {
 
 		CustomizeDiff: customdiff.Sequence(
 			// Clear the diff if the old and new allocation_pools are the same.
-			func(diff *schema.ResourceDiff, v interface{}) error {
-				return networkingSubnetV2AllocationPoolsCustomizeDiff(diff)
+			func(ctx context.Context, diff *schema.ResourceDiff, v interface{}) error {
+				return networkingSubnetV2AllocationPoolsCustomizeDiff(ctx, diff)
 			},
 		),
 	}

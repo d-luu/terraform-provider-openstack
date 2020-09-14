@@ -6,7 +6,7 @@ import (
 
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/projects"
 	"github.com/gophercloud/gophercloud/openstack/identity/v3/users"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func dataSourceIdentityProjectV3() *schema.Resource {
@@ -103,7 +103,6 @@ func dataSourceIdentityProjectV3Read(d *schema.ResourceData, meta interface{}) e
 			userID, _, err = GetTokenInfo(identityClient)
 			if err != nil {
 				return fmt.Errorf("Error when getting token info: %s", err)
-				return err
 			}
 		}
 		// Search for all the projects using the users.ListProjects API call and filter them

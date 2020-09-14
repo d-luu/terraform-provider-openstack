@@ -25,10 +25,10 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 	flavors_utils "github.com/gophercloud/utils/openstack/compute/v2/flavors"
 	images_utils "github.com/gophercloud/utils/openstack/compute/v2/images"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/hashcode"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+	"github.com/terraform-providers/terraform-provider-openstack/internal/helper/hashcode"
 )
 
 func resourceComputeInstanceV2() *schema.Resource {
@@ -85,10 +85,10 @@ func resourceComputeInstanceV2() *schema.Resource {
 				Computed: true,
 			},
 			"floating_ip": {
-				Type:     schema.TypeString,
-				Optional: true,
-				ForceNew: false,
-				Removed:  "Use the openstack_compute_floatingip_associate_v2 resource instead",
+				Type:       schema.TypeString,
+				Optional:   true,
+				ForceNew:   false,
+				Deprecated: "Use the openstack_compute_floatingip_associate_v2 resource instead",
 			},
 			"user_data": {
 				Type:     schema.TypeString,
@@ -175,10 +175,10 @@ func resourceComputeInstanceV2() *schema.Resource {
 							Computed: true,
 						},
 						"floating_ip": {
-							Type:     schema.TypeString,
-							Optional: true,
-							Computed: true,
-							Removed:  "Use the openstack_compute_floatingip_associate_v2 resource instead",
+							Type:       schema.TypeString,
+							Optional:   true,
+							Computed:   true,
+							Deprecated: "Use the openstack_compute_floatingip_associate_v2 resource instead",
 						},
 						"mac": {
 							Type:     schema.TypeString,
@@ -285,9 +285,9 @@ func resourceComputeInstanceV2() *schema.Resource {
 				},
 			},
 			"volume": {
-				Type:     schema.TypeSet,
-				Optional: true,
-				Removed:  "Use block_device or openstack_compute_volume_attach_v2 instead",
+				Type:       schema.TypeSet,
+				Optional:   true,
+				Deprecated: "Use block_device or openstack_compute_volume_attach_v2 instead",
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"id": {

@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/gophercloud/gophercloud/openstack/keymanager/v1/acls"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 // so far only "read" is supported

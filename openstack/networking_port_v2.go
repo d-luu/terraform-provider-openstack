@@ -13,9 +13,10 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/portsecurity"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/qos/policies"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/hashcode"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/structure"
+	"github.com/terraform-providers/terraform-provider-openstack/internal/helper/hashcode"
 )
 
 type portExtended struct {
@@ -207,7 +208,7 @@ func flattenNetworkingPortBindingV2(port portExtended) interface{} {
 	if err != nil {
 		log.Printf("[DEBUG] flattenNetworkingPortBindingV2: Cannot marshal port.Profile: %s", err)
 	}
-	profile = string(tmp)
+	profile, _ = structure.NormalizeJsonString(string(tmp))
 
 	vifDetails := make(map[string]string)
 	for k, v := range port.VIFDetails {

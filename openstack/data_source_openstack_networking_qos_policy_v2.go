@@ -8,7 +8,7 @@ import (
 
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/qos/policies"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func dataSourceNetworkingQoSPolicyV2() *schema.Resource {

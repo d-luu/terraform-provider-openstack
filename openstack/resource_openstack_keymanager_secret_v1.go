@@ -1,6 +1,7 @@
 package openstack
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"strings"
@@ -8,10 +9,10 @@ import (
 
 	"github.com/gophercloud/gophercloud/openstack/keymanager/v1/acls"
 	"github.com/gophercloud/gophercloud/openstack/keymanager/v1/secrets"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/customdiff"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/customdiff"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceKeyManagerSecretV1() *schema.Resource {
@@ -140,7 +141,7 @@ func resourceKeyManagerSecretV1() *schema.Resource {
 				Type:         schema.TypeString,
 				Optional:     true,
 				ForceNew:     true,
-				ValidateFunc: validation.ValidateRFC3339TimeString,
+				ValidateFunc: validation.IsRFC3339Time,
 			},
 
 			"created_at": {
@@ -166,7 +167,7 @@ func resourceKeyManagerSecretV1() *schema.Resource {
 
 		CustomizeDiff: customdiff.Sequence(
 			// Clear the diff if the source payload is base64 encoded.
-			func(diff *schema.ResourceDiff, v interface{}) error {
+			func(ctx context.Context, diff *schema.ResourceDiff, v interface{}) error {
 				return resourceSecretV1PayloadBase64CustomizeDiff(diff)
 			},
 		),
